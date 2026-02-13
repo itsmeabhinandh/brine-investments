@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Portfolio - Brine Investments</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f0e6;
+            color: black;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .navbar a {
+            color: black;
+            text-decoration: none;
+            margin: 0 20px;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #8c6b3f;
+        }
+
+        .content {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .story-card {
+            background: white;
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+
+        .story-card h3 {
+            margin-top: 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="login.html">Investor Login</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="content">
+        <h1>Our Success Stories</h1>
+        <div id="storiesContainer"></div>
+    </div>
+
+    <script>
+        function loadStories() {
+            let stories = JSON.parse(localStorage.getItem("stories")) || [];
+            const container = document.getElementById("storiesContainer");
+            container.innerHTML = "";
+
+            if (stories.length === 0) {
+                container.innerHTML = "<p>No success stories added yet.</p>";
+                return;
+            }
+
+            stories.forEach(story => {
+                const div = document.createElement("div");
+                div.className = "story-card";
+                div.innerHTML = `
+                    <h3>${story.title}</h3>
+                    <p>${story.description}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        loadStories();
+    </script>
+
+    <div class="footer">
+        <p>© 2026 Brine Investments. All Rights Reserved.</p>
+
+        <p style="font-size:12px; max-width:900px; margin:20px auto; line-height:1.6;">
+            Disclaimer: The information provided on this website is for informational purposes only 
+            and does not constitute investment advice, solicitation, or an offer to sell securities. 
+            All investments involve risk, including possible loss of principal. Past performance 
+            does not guarantee future results. Please consult a qualified financial advisor before 
+            making investment decisions.
+        </p>
+    </div>
+
+</body>
+</html>
